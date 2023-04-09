@@ -5,13 +5,13 @@ from fastapi import FastAPI, APIRouter
 from fastapi.middleware.cors import CORSMiddleware
 #from .config import settings
 
-#models.Base.metadata.create_all(bind=engine)
+models.Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
-router = APIRouter(
-    prefix="/users",
-    tags=['Users']
-)
+#router = APIRouter(
+#    prefix="/users",
+#    tags=['Users']
+#)
 
 origins = ["*"] # ["https://www.google.com","https://www.youtube.com"]
 app.add_middleware(

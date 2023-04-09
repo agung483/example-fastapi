@@ -10,6 +10,7 @@ router = APIRouter(
 )
 
 @router.get("/",response_model=List[schemas.Vote])
+#@router.get("/")
 def get_votes(db: Session = Depends(get_db), 
               current_user: int = Depends(oauth2.get_current_user)):
     votes = db.query(models.Vote).all()
