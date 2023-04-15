@@ -17,6 +17,12 @@ jobs:
     steps:
       - name: pulling git repo
         uses: actions/checkout@v3
-      - name: say hi to agung
-        run: echo "hello agung"
+      - name: Install python version 3.11
+        uses:  actions/setup-python@v4
+        with:
+          python-version: '3.11'
+      - name: Update pip
+        run: python3 -m pip install --upgrade pip
+      - name: Install all the dependencies
+        run: pip install -r requirements.txt
       
