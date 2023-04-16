@@ -34,9 +34,9 @@ jobs:
         run: python3 -m pip install --upgrade pip
       - name: Install all the dependencies
         run: pip install -r requirements.txt
+      - name: Install pytest
+        run: pip install pytest
       - name: Test with pytest
-        run:
-          - pip install pytest
-          - pytest
+        run: pytest
 
       
