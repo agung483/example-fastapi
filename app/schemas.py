@@ -127,8 +127,8 @@ class TransaksiCreate(BaseModel):
     no_meja: int 
     nama_pemesan: str
     discount: float
-    status_bayar:  bool | None = False
-    status_kirim: bool | None = False
+    status_bayar:  bool
+    status_kirim: bool
 
 class Transaksi(BaseModel):
     id: int
