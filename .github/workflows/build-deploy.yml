@@ -24,6 +24,7 @@ jobs:
       SECRET_KEY: ${{secrets.SECRET_KEY}}
       ALGORITHM: ${{secrets.ALGORITHM}}
       ACCESS_TOKEN_EXPIRE_MINUTES: ${{secrets.ACCESS_TOKEN_EXPIRE_MINUTES}}
+
     services:
       postgres:
         image: postgres
@@ -37,12 +38,12 @@ jobs:
           --health-interval 10s
           --health-timeout 5s
           --health-retries 5
-          
+
     runs-on: ubuntu-latest
     steps:
       - name: pulling git repo
         uses: actions/checkout@v3
-      - name: Install python version 3.11
+      - name: Install python version 3.11-0
         uses:  actions/setup-python@v4
         with:
           python-version: '3.11'
