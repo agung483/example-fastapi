@@ -126,7 +126,7 @@ class DetTransaksi(BaseModel):
 class TransaksiCreate(BaseModel):
     no_meja: int 
     nama_pemesan: str
-    discount: float | None = None
+    discount: float
     status_bayar:  bool | None = False
     status_kirim: bool | None = False
 
@@ -134,7 +134,7 @@ class Transaksi(BaseModel):
     id: int
     no_meja: int 
     nama_pemesan: str
-    discount: float | None = None
+    discount: float
     status_bayar: bool
     status_kirim: bool
     owner_id: int
@@ -147,7 +147,7 @@ class TransaksiLengkap(BaseModel):
     id: int
     no_meja: int
     nama_pemesan: str
-    discount: float | None = None
+    discount: float
     status_bayar: bool
     status_kirim: bool
     list_det_transaksi: list[DetTransaksi]
