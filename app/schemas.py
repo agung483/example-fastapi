@@ -72,7 +72,7 @@ class KelMenu(BaseModel):
 class MenuCreate(BaseModel):
     nama: str
     harga: int
-    stok: int | None = 0
+    stok: int 
     kelompok_id: int
 
 class MenuTampil(BaseModel):
@@ -119,7 +119,7 @@ class DetTransaksi(BaseModel):
     jumlah: int
     harga: float
     status_masak: bool
-    catatan: Optional[str] = None
+    catatan: Optional[str] = ''
     class Config:
         orm_mode = True
 
@@ -132,7 +132,7 @@ class TransaksiCreate(BaseModel):
 
 class Transaksi(BaseModel):
     id: int
-    no_meja: int
+    no_meja: int 
     nama_pemesan: str
     discount: float | None = None
     status_bayar: bool
@@ -150,7 +150,7 @@ class TransaksiLengkap(BaseModel):
     discount: float | None = None
     status_bayar: bool
     status_kirim: bool
-    list_det_transasi: list[DetTransaksi]
+    list_det_transaksi: list[DetTransaksi]
     owner_id: int
     owner: UserOut
     created_at: datetime
