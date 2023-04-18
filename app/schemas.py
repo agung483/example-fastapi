@@ -124,7 +124,7 @@ class DetTransaksi(BaseModel):
         orm_mode = True
 
 class TransaksiCreate(BaseModel):
-    no_meja: int | None = None
+    no_meja: int 
     nama_pemesan: str | None = None
     discount: float | None = None
     status_bayar:  bool | None = False
