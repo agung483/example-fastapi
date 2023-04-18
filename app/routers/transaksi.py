@@ -14,6 +14,16 @@ router = APIRouter(
     tags=['Pesan']
 )
 
+@router.get("/")
+def get_posts(db: Session = Depends(get_db), current_user: int = Depends(oauth2.get_current_user), 
+              limit: int = 10, skip: int = 0):
+    
+    posttransaksi = db.query(models.Transaksi).join(
+        models.DetTransaksi, models.Transaksi.id == models.DetTransaksi.id, isouter=True).join(
+        models.User, models.Transaksi.owner_id== models.User.id, isouter=True).group_by(models.Transaksi.id).limit(limit).offset(skip).all()
+    
+    return posttransaksi
+
 #@router.post("/", status_code=status.HTTP_201_CREATED,  response_model=schemas.TransaksiLengkap)
 @router.post("/", status_code=status.HTTP_201_CREATED)
 def create_transaksis(pesan: schemas.TransaksiCreate,det_pesans: list[schemas.DetTransaksiCreate], db: Session = Depends(get_db), 
