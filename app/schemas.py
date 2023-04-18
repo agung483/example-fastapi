@@ -64,6 +64,7 @@ class KelMenu(BaseModel):
     kelompok: str
     no_urut: int
     owner_id: int
+    owner: UserOut
     created_at: datetime
     class Config:
         orm_mode = True
@@ -71,8 +72,13 @@ class KelMenu(BaseModel):
 class MenuCreate(BaseModel):
     nama: str
     harga: int
-    stok: int
+    stok: int | None = 0
     kelompok_id: int
+
+class MenuTampil(BaseModel):
+    id: int
+    nama: str
+    harga: int
 
 class Menu(BaseModel):
     id: int
@@ -81,6 +87,7 @@ class Menu(BaseModel):
     stok: int
     kelompok_id: int
     owner_id: int
+    owner: UserOut
     kelompok: KelMenu
     created_at: datetime
     class Config:
@@ -95,6 +102,57 @@ class Vote(BaseModel):
     post_id: int
     post: Post
     voter: UserOut
+    created_at: datetime
+    class Config:
+        orm_mode = True
+
+class DetTransaksiCreate(BaseModel):
+    menu_id: int
+    jumlah: int
+    harga: float
+    catatan: Optional[str] = None
+
+class DetTransaksi(BaseModel):
+    transaksi_id: int
+    menu_id: int
+    menu: MenuTampil
+    jumlah: int
+    harga: float
+    status_masak: bool
+    catatan: Optional[str] = None
+    class Config:
+        orm_mode = True
+
+class TransaksiCreate(BaseModel):
+    no_meja: int | None = None
+    nama_pemesan: str | None = None
+    discount: float | None = None
+    status_bayar:  bool | None = False
+    status_kirim: bool | None = False
+
+class Transaksi(BaseModel):
+    id: int
+    no_meja: int
+    nama_pemesan: str
+    discount: float | None = None
+    status_bayar: bool
+    status_kirim: bool
+    owner_id: int
+    owner: UserOut
+    created_at: datetime
+    class Config:
+        orm_mode = True
+
+class TransaksiLengkap(BaseModel):
+    id: int
+    no_meja: int
+    nama_pemesan: str
+    discount: float | None = None
+    status_bayar: bool
+    status_kirim: bool
+    list_det_transasi: list[DetTransaksi]
+    owner_id: int
+    owner: UserOut
     created_at: datetime
     class Config:
         orm_mode = True

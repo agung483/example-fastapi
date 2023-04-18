@@ -18,7 +18,7 @@ engine = create_engine(SQLALCHEMY_DATABASE_URL)
 
 TestingSessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine )
 
-# default scope="function", artinya setiap function selesai dilakukan semua table akan dihapus kalau ada drop_all, jadi scopye dirubah ke "module"
+# default scope="function", artinya setiap function selesai dilakukan semua table akan dihapus kalau ada drop_all, jadi scope dirubah ke "module"
 @pytest.fixture()
 def session():
     #command.downgrade("base")

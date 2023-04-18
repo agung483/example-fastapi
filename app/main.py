@@ -1,6 +1,6 @@
 from . import models
 from .database import engine
-from .routers import post, user, auth, menu, kelMenu, vote
+from .routers import post, user, auth, menu, kelMenu, vote, transaksi
 from fastapi import FastAPI, APIRouter
 from fastapi.middleware.cors import CORSMiddleware
 #from .config import settings
@@ -29,7 +29,7 @@ app.include_router(auth.router)
 app.include_router(menu.router)
 app.include_router(kelMenu.router)
 app.include_router(vote.router)
-
+app.include_router(transaksi.router)
 
 @app.get("/")
 def read_items():
